@@ -12,7 +12,7 @@ help:             	## Show the help.
 venv:			## Create a virtual environment
 	@echo "Creating virtualenv ..."
 	@rm -rf .venv
-	@python3.10 -m venv .venv
+	@python3.9 -m venv .venv
 	@./.venv/bin/pip install -U pip
 	@echo
 	@echo "Run 'source .venv/bin/activate' to enable the environment"
