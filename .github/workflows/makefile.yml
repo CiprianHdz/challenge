@@ -1,0 +1,42 @@
+name: Makefile CI
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.9"
+
+      - name: Create virtualenv
+        run: make venv
+
+      - name: Install dependencies
+        run: |
+          source .venv/bin/activate
+          make install
+
+      - name: Run model tests
+        run: |
+          source .venv/bin/activate
+          make model-test
+
+      - name: Run API tests
+        run: |
+          source .venv/bin/activate
+          make api-test
+
+      # Optional: build the wheel artifact
+      - name: Build package
+        run: |
+          source .venv/bin/activate
+          make build
