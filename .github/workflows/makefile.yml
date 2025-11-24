@@ -34,9 +34,3 @@ jobs:
         run: |
           source .venv/bin/activate
           make api-test
-
-      # Optional: build the wheel artifact
-      - name: Build package
-        run: |
-          source .venv/bin/activate
-          make build
