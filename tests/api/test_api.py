@@ -7,6 +7,11 @@ from challenge import app
 class TestBatchPipeline(unittest.TestCase):
     def setUp(self):
         self.client = TestClient(app)
+
+    def test_health(self):
+        response = self.client.get("/health")
+        assert response.status_code == 200
+        assert response.json() == {"status": "OK"}
         
     def test_should_get_predict(self):
         data = {
@@ -44,7 +49,7 @@ class TestBatchPipeline(unittest.TestCase):
                 {
                     "OPERA": "Aerolineas Argentinas", 
                     "TIPOVUELO": "O", 
-                    "MES": 13
+                    "MES": 3
                 }
             ]
         }
@@ -57,8 +62,8 @@ class TestBatchPipeline(unittest.TestCase):
             "flights": [
                 {
                     "OPERA": "Argentinas", 
-                    "TIPOVUELO": "O", 
-                    "MES": 13
+                    "TIPOVUELO": "N",
+                    "MES": 3
                 }
             ]
         }
